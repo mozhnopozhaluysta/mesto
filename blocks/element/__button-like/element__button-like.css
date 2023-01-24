@@ -11,9 +11,9 @@
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
+    transition: opacity .3s ease-in-out;
 }
 
 .element__button-like:hover {
     opacity: 0.5;
-    transition: opacity .3s ease-in-out;
 }

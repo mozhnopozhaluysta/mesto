@@ -7,22 +7,16 @@ const profileAddBtn = document.querySelector(".profile__add-button");
 const popup = document.querySelector(".popup");
 const buttonClose = document.querySelector(".popup__button-close");
 const buttonSave = document.querySelector(".popup__button-save");
-const popupName = document.querySelector(".popup__name");
-const popupInfo = document.querySelector(".popup__info");
+const popupName = document.querySelector(".popup__input_type_name");
+const popupInfo = document.querySelector(".popup__input_type_info");
 const popupForm = document.querySelector(".popup__form");
 
 // функция открытия попапа
 function openSubmit() {
-    popup.classList.add("popup_open");
-}
-
-
-// событие при клике на кнопку редактирования профиля
-profileEditBtn.addEventListener("click", () => {
+    popup.classList.add("popup_opened");
     popupName.value = profileName.textContent;
     popupInfo.value = profileDetails.textContent;
-    openSubmit();
-});
+}
 
 // функция обновленной информации о имени и деталях в профиль
 function handleFormSubmit(evt) {
@@ -35,8 +29,13 @@ function handleFormSubmit(evt) {
 
 // функция закрытия попапа
 function closeSubmit() {
-    popup.classList.remove("popup_open");
+    popup.classList.remove("popup_opened");
 }
+
+// событие при клике на кнопку редактирования профиля
+profileEditBtn.addEventListener("click", () => {
+    openSubmit();
+});
 
 // событие отправки информации из формы
 popupForm.addEventListener("submit", handleFormSubmit);
