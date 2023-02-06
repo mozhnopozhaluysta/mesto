@@ -26,54 +26,49 @@
         <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
-        <ul class="elements__list">
-          <li class="element">
-            <img class="element__photo" src="./images/element-karachaevsk.png" alt="фото местности Карачаевск, древнее здание в горах">
-            <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="element__button-like"></button>
-          </li>
-          <li class="element">
-            <img class="element__photo" src="./images/element-elbrus.png" alt="фото Эльбруса">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__button-like"></button>
-          </li>
-          <li class="element">
-            <img class="element__photo" src="./images/element-dombay.png" alt="фото гор на Домбае">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__button-like"></button>
-          </li>
-          <li class="element">
-            <img class="element__photo" src="./images/element-elbrus.png" alt="фото Эльбруса">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__button-like"></button>
-          </li>
-          <li class="element">
-            <img class="element__photo" src="./images/element-dombay.png" alt="фото гор на Домбае">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__button-like"></button>
-          </li>
-          <li class="element">
-            <img class="element__photo" src="./images/element-karachaevsk.png" alt="фото местности Карачаевск, древнее здание в горах">
-            <h2 class="element__title">Карачаево-Черкесия</h2>
-            <button type="button" class="element__button-like"></button>
-          </li>
-        </ul>
       </section>
+      <template id="element-template" class="element-template">
+        <div class="element">
+          <button type="button" class="element__delete"></button>
+          <img class="element__photo" src="" alt="города России">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__button-like"></button>
+        </div>
+      </template>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <section class="popup popup__type_edit-profile">
       <div class="popup__container">
         <button type="button" class="popup__button-close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="form-details" novalidate>
+        <form class="popup__form" name="form-details" id="form-details" novalidate>
             <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя пользователя">
             <input type="text" name="info" class="popup__input popup__input_type_info" placeholder="О себе">
             <button type="submit" class="popup__button-save">Сохранить</button>
         </form>
       </div>
     </section>
+    <section class="popup popup__type_add-element">
+      <div class="popup__container">
+        <button type="button" class="popup__button-close"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="form-add-element" id="form-add-element" novalidate>
+            <input type="text" name="img-name" class="popup__input popup__input_type_img-name" placeholder="Название">
+            <input type="url" name="img-link" class="popup__input popup__input_type_img-link" placeholder="Ссылка на картинку">
+            <button type="submit" class="popup__button-save">Создать</button>
+        </form>
+      </div>
+    </section>
+    <section class="popup popup__type_image">
+      <figure class="popup__image-container">
+        <button class="popup__close" type="button"></button>
+        <img class="popup__image" src="#" alt="Изображения городов России">
+        <figcaption class="popup__image-title"></figcaption>
+      </figure>
+    </section>
+    <script src="./scripts/photoElements.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
