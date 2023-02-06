@@ -9,8 +9,8 @@ const popupName = document.querySelector(".popup__input_type_name");
 const popupInfo = document.querySelector(".popup__input_type_info");
 const popupForm = document.querySelector("#form-details");
 
-const popupEditProfile = document.querySelector(".popup__type_edit-profile");
-const popupAddCard = document.querySelector(".popup__type_add-element");
+const popupEditProfile = document.querySelector(".popup_type_edit-profile");
+const popupAddCard = document.querySelector(".popup_type_add-element");
 
 const buttonCloseEditProfile = popupEditProfile.querySelector(".popup__button-close");
 const buttonCloseAddCard = popupAddCard.querySelector(".popup__button-close");
@@ -63,7 +63,7 @@ buttonCloseAddCard.addEventListener("click", ()=> {
 const photoContainer = document.querySelector(".elements")
 const template = document.querySelector(".element-template").content
 
-const popupImage = document.querySelector(".popup__type_image")
+const popupImage = document.querySelector(".popup_type_image")
 const imageClosePopup = popupImage.querySelector(".popup__close")
 const imageImg = document.querySelector(".popup__image")
 const imageTitle = document.querySelector(".popup__image-title")
