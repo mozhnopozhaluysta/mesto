@@ -15,51 +15,6 @@ const popupAddCard = document.querySelector(".popup_type_add-element");
 const buttonCloseEditProfile = popupEditProfile.querySelector(".popup__button-close");
 const buttonCloseAddCard = popupAddCard.querySelector(".popup__button-close");
 
-// функция открытия попапа
-function openSubmit(popup) {
-    popup.classList.add("popup_opened");
-    popupName.value = profileName.textContent;
-    popupInfo.value = profileDetails.textContent;
-}
-
-// функция обновленной информации о имени и деталях в профиль
-function handleFormSubmit(evt) {
-    evt.preventDefault();
-
-    profileName.textContent = popupName.value;
-    profileDetails.textContent = popupInfo.value;
-    closeSubmit(popupEditProfile);
-}
-
-// функция закрытия попапа редактирования
-function closeSubmit(popup) {
-    popup.classList.remove("popup_opened");
-}
-
-// событие при клике на кнопку редактирования профиля
-profileEditBtn.addEventListener("click", () => {
-    openSubmit(popupEditProfile);
-});
-
-// событие при клике на кнопку добавления фото
-profileAddBtn.addEventListener("click", () => {
-  openSubmit(popupAddCard);
-});
-
-// событие отправки информации из формы редактирования
-popupForm.addEventListener("submit", handleFormSubmit);
-
-// событие при клике на кнопку закрытия попапа редактирования
-buttonCloseEditProfile.addEventListener("click", ()=> {
-    closeSubmit(popupEditProfile);
-})
-
-// событие при клике на кнопку закрытия попапа добавления фото
-buttonCloseAddCard.addEventListener("click", ()=> {
-  closeSubmit(popupAddCard);
-})
-
-
 const photoContainer = document.querySelector(".elements")
 const template = document.querySelector(".element-template").content
 
@@ -69,47 +24,63 @@ const imageImg = document.querySelector(".popup__image")
 const imageTitle = document.querySelector(".popup__image-title")
 
 
-// событие при клике на кнопку закрытия попапа с фото
-imageClosePopup.addEventListener("click", ()=> {
-  closeSubmit(popupImage);
-})
+const imgName = document.querySelector(".popup__input_type_img-name")
+const ImgLink = document.querySelector(".popup__input_type_img-link")
+const popupFormAdd = document.querySelector("#form-add-element")
+
+const likeActive = "element__button-like_active"
+
+// функция открытия попапа
+function openPopup(popup) {
+    popup.classList.add("popup_opened");
+}
+
+function openPropfilePopup() { 
+  popupName.value = profileName.textContent;
+  popupInfo.value = profileDetails.textContent;
+  openPopup(popup) 
+  }
+
+// функция обновленной информации о имени и деталях в профиль
+function handleEditFormSubmit(evt) {
+  evt.preventDefault();
+
+  profileName.textContent = popupName.value;
+  profileDetails.textContent = popupInfo.value;
+  closePopup(popupEditProfile);
+}
+
+// функция закрытия попапа редактирования
+function closePopup(popup) {
+    popup.classList.remove("popup_opened");
+}
 
 function imageOpen(card, link) {
   const cardTitle = card.querySelector(".element__title").textContent
   imageImg.src = link
   imageImg.alt = cardTitle
   imageTitle.textContent = cardTitle
-  openSubmit(popupImage)
+  openPopup(popupImage)
 }
 
 function createCard(value) {
   const card = template.querySelector(".element").cloneNode(true)
-  if (card) {
-    const title = card.querySelector(".element__title")
-    const photo = card.querySelector(".element__photo")
-    const photoDelete = card.querySelector(".element__delete")
-    const like = card.querySelector(".element__button-like")
-    if (title && photo && photoDelete && like) {
-      title.textContent = value.name
-      photo.src = value.link
-      photo.addEventListener("click", () => {
-        imageOpen(card, value.link)
-      })
-      photoDelete.addEventListener("click", () => {
-        card.remove()
-      })
-      like.addEventListener("click", () => { 
-        const button = card.querySelector(".element__button-like")
-        const className = "element__button-like_active"
-        if (button)
-          if (button.classList.contains(className)) {
-            button.classList.remove(className)
-          } else {
-            button.classList.add(className)
-          }
-      })
-    }
-  }
+  const title = card.querySelector(".element__title")
+  const photo = card.querySelector(".element__photo")
+  const photoDelete = card.querySelector(".element__delete")
+  const like = card.querySelector(".element__button-like")
+    title.textContent = value.name
+    photo.src = value.link
+    photo.alt = value.name
+    photo.addEventListener("click", () => {
+      imageOpen(card, value.link)
+    })
+    photoDelete.addEventListener("click", () => {
+      card.remove()
+    })
+    like.addEventListener("click", () => { 
+      like.classList.toggle(likeActive)
+    })
   return card
 }
 
@@ -126,19 +97,42 @@ function render() {
 
 render()
 
-const imgName = document.querySelector(".popup__input_type_img-name")
-const ImgLink = document.querySelector(".popup__input_type_img-link")
-const popupFormAdd = document.querySelector("#form-add-element")
-
-
 function submitCardForm(evt) {
   evt.preventDefault()
   const name = imgName.value
   const link = ImgLink.value
   const newCard = createCard({ name, link })
   if (newCard) renderCard(newCard, photoContainer)
-  closeSubmit(popupAddCard)
+  closePopup(popupAddCard)
   popupFormAdd.reset()
 }
+
+// событие при клике на кнопку редактирования профиля
+profileEditBtn.addEventListener("click", () => {
+  openPopup(popupEditProfile);
+});
+
+// событие при клике на кнопку добавления фото
+profileAddBtn.addEventListener("click", () => {
+openPopup(popupAddCard);
+});
+
+// событие отправки информации из формы редактирования
+popupForm.addEventListener("submit", handleEditFormSubmit);
+
+// событие при клике на кнопку закрытия попапа редактирования
+buttonCloseEditProfile.addEventListener("click", ()=> {
+  closePopup(popupEditProfile);
+})
+
+// событие при клике на кнопку закрытия попапа добавления фото
+buttonCloseAddCard.addEventListener("click", ()=> {
+closePopup(popupAddCard);
+})
+
+// событие при клике на кнопку закрытия попапа с фото
+imageClosePopup.addEventListener("click", ()=> {
+closePopup(popupImage);
+})
 
 popupFormAdd.addEventListener("submit", submitCardForm)
