@@ -4,7 +4,6 @@ const profileDetails = document.querySelector(".profile__details");
 const profileEditBtn = document.querySelector(".profile__edit-button");
 const profileAddBtn = document.querySelector(".profile__add-button");
 
-const buttonSave = document.querySelector(".popup__button-save");
 const popupName = document.querySelector(".popup__input_type_name");
 const popupInfo = document.querySelector(".popup__input_type_info");
 const popupForm = document.querySelector("#form-details");
@@ -23,23 +22,40 @@ const imageClosePopup = popupImage.querySelector(".popup__close")
 const imageImg = document.querySelector(".popup__image")
 const imageTitle = document.querySelector(".popup__image-title")
 
+const Inputs = document.querySelector(".popup__input")
 
 const imgName = document.querySelector(".popup__input_type_img-name")
 const ImgLink = document.querySelector(".popup__input_type_img-link")
+
+
 const popupFormAdd = document.querySelector("#form-add-element")
+console.log(popupFormAdd);
+
+const popupFormEdit = document.querySelector("#form-details");
+console.log(popupFormEdit);
+
 
 const likeActive = "element__button-like_active"
 
 // функция открытия попапа
 function openPopup(popup) {
+    document.addEventListener("keydown", closePopupOnEscape)
     popup.classList.add("popup_opened");
 }
 
-function openPropfilePopup() { 
+function closePopupOnEscape(evt) {
+  if (evt.code == "Escape") {
+    const popup = document.querySelector(".popup_opened")
+    closePopup(popup)
+  }
+}
+
+/* function openPropfilePopup() { 
   popupName.value = profileName.textContent;
   popupInfo.value = profileDetails.textContent;
+
   openPopup(popup) 
-  }
+  } */
 
 // функция обновленной информации о имени и деталях в профиль
 function handleEditFormSubmit(evt) {
@@ -53,7 +69,26 @@ function handleEditFormSubmit(evt) {
 // функция закрытия попапа редактирования
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
+    document.removeEventListener("keydown", closePopupOnEscape)
 }
+
+popupEditProfile.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popupEditProfile)
+  }
+})
+
+popupAddCard.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popupAddCard)
+  }
+})
+
+popupImage.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popupImage)
+  }
+})
 
 function imageOpen(card, link) {
   const cardTitle = card.querySelector(".element__title").textContent
@@ -69,18 +104,18 @@ function createCard(value) {
   const photo = card.querySelector(".element__photo")
   const photoDelete = card.querySelector(".element__delete")
   const like = card.querySelector(".element__button-like")
-    title.textContent = value.name
-    photo.src = value.link
-    photo.alt = value.name
-    photo.addEventListener("click", () => {
-      imageOpen(card, value.link)
-    })
-    photoDelete.addEventListener("click", () => {
-      card.remove()
-    })
-    like.addEventListener("click", () => { 
-      like.classList.toggle(likeActive)
-    })
+  title.textContent = value.name
+  photo.src = value.link
+  photo.alt = value.name
+  photo.addEventListener("click", () => {
+    imageOpen(card, value.link)
+  })
+  photoDelete.addEventListener("click", () => {
+    card.remove()
+  })
+  like.addEventListener("click", () => { 
+    like.classList.toggle(likeActive)
+  })
   return card
 }
 
@@ -109,12 +144,16 @@ function submitCardForm(evt) {
 
 // событие при клике на кнопку редактирования профиля
 profileEditBtn.addEventListener("click", () => {
+  popupName.value = profileName.textContent;
+  popupInfo.value = profileDetails.textContent;
+  disableSubmit(popupEditProfile, formValidationConfig)
   openPopup(popupEditProfile);
 });
 
 // событие при клике на кнопку добавления фото
 profileAddBtn.addEventListener("click", () => {
-openPopup(popupAddCard);
+  disableSubmit(popupAddCard, formValidationConfig);
+  openPopup(popupAddCard);
 });
 
 // событие отправки информации из формы редактирования

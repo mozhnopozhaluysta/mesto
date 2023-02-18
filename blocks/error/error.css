@@ -1,0 +1,11 @@
+.error {
+    padding: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #f00;
+    width: 100%;
+    border: none;
+    display: block;
+    height: 12px;
+} 
