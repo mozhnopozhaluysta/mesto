@@ -22,18 +22,13 @@ const imageClosePopup = popupImage.querySelector(".popup__close")
 const imageImg = document.querySelector(".popup__image")
 const imageTitle = document.querySelector(".popup__image-title")
 
-const Inputs = document.querySelector(".popup__input")
-
 const imgName = document.querySelector(".popup__input_type_img-name")
 const ImgLink = document.querySelector(".popup__input_type_img-link")
 
 
 const popupFormAdd = document.querySelector("#form-add-element")
-console.log(popupFormAdd);
 
 const popupFormEdit = document.querySelector("#form-details");
-console.log(popupFormEdit);
-
 
 const likeActive = "element__button-like_active"
 
@@ -44,18 +39,11 @@ function openPopup(popup) {
 }
 
 function closePopupOnEscape(evt) {
-  if (evt.code == "Escape") {
+  if (evt.code === "Escape") {
     const popup = document.querySelector(".popup_opened")
     closePopup(popup)
   }
 }
-
-/* function openPropfilePopup() { 
-  popupName.value = profileName.textContent;
-  popupInfo.value = profileDetails.textContent;
-
-  openPopup(popup) 
-  } */
 
 // функция обновленной информации о имени и деталях в профиль
 function handleEditFormSubmit(evt) {
