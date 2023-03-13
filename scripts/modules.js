@@ -24,3 +24,15 @@ const photoElements = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   }
 ];
+
+const formValidationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button-save",
+  inactiveButtonClass: "popup__button-save_disabled",
+  activeButtonClass: "popup__button-save_valid",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "error",
+}
+
+export { photoElements, formValidationConfig };

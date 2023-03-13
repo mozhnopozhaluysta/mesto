@@ -1,3 +1,7 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { photoElements, formValidationConfig } from "./modules.js";
+
 const profile = document.querySelector(".profile");
 const profileName = document.querySelector(".profile__name");
 const profileDetails = document.querySelector(".profile__details");
@@ -25,12 +29,24 @@ const imageTitle = document.querySelector(".popup__image-title")
 const imgName = document.querySelector(".popup__input_type_img-name")
 const ImgLink = document.querySelector(".popup__input_type_img-link")
 
-
 const popupFormAdd = document.querySelector("#form-add-element")
 
 const popupFormEdit = document.querySelector("#form-details");
 
 const likeActive = "element__button-like_active"
+
+const popupEditProfileValidation = new FormValidator(
+  formValidationConfig,
+  popupEditProfile
+)
+
+popupEditProfileValidation.enableValidation()
+const popupAddCardValidation = new FormValidator(
+  formValidationConfig,
+  popupAddCard
+)
+
+popupAddCardValidation.enableValidation()
 
 // функция открытия попапа
 function openPopup(popup) {
@@ -79,31 +95,14 @@ popupImage.addEventListener("click", (evt) => {
 })
 
 function imageOpen(card, link) {
-  const cardTitle = card.querySelector(".element__title").textContent
   imageImg.src = link
-  imageImg.alt = cardTitle
-  imageTitle.textContent = cardTitle
+  imageImg.alt = card
+  imageTitle.textContent = card
   openPopup(popupImage)
 }
 
 function createCard(value) {
-  const card = template.querySelector(".element").cloneNode(true)
-  const title = card.querySelector(".element__title")
-  const photo = card.querySelector(".element__photo")
-  const photoDelete = card.querySelector(".element__delete")
-  const like = card.querySelector(".element__button-like")
-  title.textContent = value.name
-  photo.src = value.link
-  photo.alt = value.name
-  photo.addEventListener("click", () => {
-    imageOpen(card, value.link)
-  })
-  photoDelete.addEventListener("click", () => {
-    card.remove()
-  })
-  like.addEventListener("click", () => { 
-    like.classList.toggle(likeActive)
-  })
+  const card = new Card(value, ".element-template", imageOpen).generateCard()
   return card
 }
 
@@ -134,13 +133,13 @@ function submitCardForm(evt) {
 profileEditBtn.addEventListener("click", () => {
   popupName.value = profileName.textContent;
   popupInfo.value = profileDetails.textContent;
-  disableSubmit(popupEditProfile, formValidationConfig)
+  popupEditProfileValidation.disableSubmitButton();
   openPopup(popupEditProfile);
 });
 
 // событие при клике на кнопку добавления фото
 profileAddBtn.addEventListener("click", () => {
-  disableSubmit(popupAddCard, formValidationConfig);
+  popupAddCardValidation.disableSubmitButton();
   openPopup(popupAddCard);
 });
 
