@@ -1,9 +1,9 @@
 export default class Card {
-    constructor(data, templateSelector, imageOpen) {
+    constructor(data, templateSelector, openImagePopup) {
         this._name = data.name
         this._link = data.link
         this._templateSelector = templateSelector
-        this.imageOpen = imageOpen
+        this.openImagePopup = openImagePopup
     }
   
     generateCard = () => {
@@ -32,7 +32,7 @@ export default class Card {
         this._delete.addEventListener("click", () => this._deleteCard())
         this._like.addEventListener("click", () => this._likeCard())
         this._photo.addEventListener("click", () =>
-        this.imageOpen(this._name, this._link))
+        this.openImagePopup(this._name, this._link))
     }
   
     _fillCard = () => {

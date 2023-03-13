@@ -94,7 +94,7 @@ popupImage.addEventListener("click", (evt) => {
   }
 })
 
-function imageOpen(card, link) {
+function openImagePopup(card, link) {
   imageImg.src = link
   imageImg.alt = card
   imageTitle.textContent = card
@@ -102,7 +102,7 @@ function imageOpen(card, link) {
 }
 
 function createCard(value) {
-  const card = new Card(value, ".element-template", imageOpen).generateCard()
+  const card = new Card(value, ".element-template", openImagePopup).generateCard()
   return card
 }
 
