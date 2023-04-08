@@ -1,7 +1,7 @@
 {
   "name": "mesto",
   "version": "0.0.1",
-  "description": "Данный проект учит верстке адаптивного сайта, с созданием модальных окон и програмированию на языке java-script.",
+  "description": "Проект Место",
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && webpack",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://mozhnopozhaluysta.github.io/mesto/"
   },
   "author": "Toma Bushtaeva",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://mozhnopozhaluysta.github.io/mesto/"
   },
-  "homepage": "",
+  "homepage": "https://mozhnopozhaluysta.github.io/mesto/",
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",

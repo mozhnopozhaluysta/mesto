@@ -11,13 +11,13 @@ import Card from "../components/Card.js";
 const profileEditBtn = document.querySelector(".profile__edit-button");
 const profileAddBtn = document.querySelector(".profile__add-button");
 
-//находим форму редактирования по ее name
+//находим форму редактирования по name
 const popupFormEdit = document.forms.formDetails
 
-//находим форму создания карточек по ее name
+//находим форму создания карточек по name
 const popupFormAdd = document.forms.formAddElement
 
-//находим поля в форме редактирования по их name
+//находим поля в форме редактирования по name
 const popupName = popupFormEdit.elements.popupName
 const popupInfo = popupFormEdit.elements.popupInfo
 
@@ -33,7 +33,7 @@ function formValues(value) {
   classEditPopup.close()
 }
 
-//Класс UserInfo отвечает за управление отображением информации о пользователе на странице.
+//Класс UserInfo отвечает за управление отображением информации о пользователе на странице
 const userInfo = new UserInfo({
   titleSelector: ".profile__name",
   subtitleSelector: ".profile__details",
