@@ -5,17 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 
 <body class="body">
     <header class="header">
-        <img class="header__logo" src="./images/header-logo.svg" alt="Логотип Mesto">
+        <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип Mesto">
     </header>
     <main>
       <section class="profile">
-        <img class="profile__avatar" src="./images/profile-avatar.png" alt="Аватар профиля">
+        <img class="profile__avatar" src="<%=require('./images/profile-avatar.png')%>" alt="Аватар профиля">
         <div class="profile__info">
           <div class="profile__info-name">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -43,13 +42,13 @@
       <div class="popup__container">
         <button type="button" class="popup__button-close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="form-details" id="form-details" novalidate>
+        <form class="popup__form" name="formDetails" id="formDetails" novalidate>
             <input
               id="popupName"
               type="text"
               minlength="2"
               maxlength="40"
-              name="name"
+              name="popupName"
               class="popup__input popup__input_type_name"
               placeholder="Имя пользователя"
               required
@@ -60,7 +59,7 @@
               minlength="2"
               maxlength="200"
               type="text"
-              name="info"
+              name="popupInfo"
               class="popup__input popup__input_type_info"
               placeholder="О себе"
               required
@@ -74,7 +73,7 @@
       <div class="popup__container">
         <button type="button" class="popup__button-close"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" name="form-add-element" id="form-add-element" novalidate>
+        <form class="popup__form" name="formAddElement" id="formAddElement" novalidate>
             <input
               id="imgName"
               minlength="2"
@@ -101,11 +100,10 @@
     </section>
     <section class="popup popup_type_image">
       <figure class="popup__image-container">
-        <button class="popup__close" type="button"></button>
+        <button class="popup__button-close" type="button"></button>
         <img class="popup__image" src="#" alt="Изображения городов России">
         <figcaption class="popup__image-title"></figcaption>
       </figure>
     </section>
-    <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
