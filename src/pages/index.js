@@ -59,7 +59,6 @@ const popupEditProfile = new PopupWithForm(
   ".popup_type_edit-profile",
   submitEditProfileForm
 )
-popupEditProfile.setEventListeners()
 
 //отрисовка карточек на странице из обьекта initialCards
 const cardSection = new Section(
@@ -76,12 +75,9 @@ const popupAddCard = new PopupWithForm(
     popupAddCard.close()
   }
 )
-popupAddCard.setEventListeners()
 
 //создается обьект класса PopupWithImage
 const popupOpenImage = new PopupWithImage(".popup_type_image")
-popupOpenImage.setEventListeners()
-console.log(popupOpenImage);
 
 //валидация формы попап редактирования профиля
 const formEditValidator = new FormValidator(formValidationConfig, popupFormEdit)

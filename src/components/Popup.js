@@ -20,7 +20,7 @@ export default class Popup {
   
     close() {
       this._popup.classList.remove("popup_opened")
-      this.delEventListeners()
+      this._removeEventListeners()
     }
 
     _handleSubmit() {
@@ -46,7 +46,7 @@ export default class Popup {
         document.addEventListener("mouseup", this._clickClose)
     }
     
-    delEventListeners() {
+    _removeEventListeners() {
     //Снятие обработчиков от popup на document
         document.removeEventListener("keydown", this._clickEscClose)
         document.removeEventListener("mouseup", this._clickClose)
