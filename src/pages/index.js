@@ -1,5 +1,5 @@
 import './index.css';
-import { photoElements, formValidationConfig } from "../components/modules.js";
+import { photoElements, formValidationConfig } from "../utils/modules.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -28,9 +28,9 @@ function createCard(item) {
 }
 
 //передача текста на страницу профиля редактирования полей Имя, О себе
-function formValues(value) {
+function submitEditProfileForm(value) {
   userInfo.setUserInfo(value.popupName, value.popupInfo)
-  classEditPopup.close()
+  popupEditProfile.close()
 }
 
 //Класс UserInfo отвечает за управление отображением информации о пользователе на странице
@@ -45,21 +45,21 @@ function openEditProfile() {
   popupName.value = title
   popupInfo.value = subtitle
   formEditValidator.disableSubmitButton()
-  classEditPopup.open()
+  popupEditProfile.open()
 }
 
 //функция открытия попапа для создания новой карточки
 function popupAddCardProfile() {
   formCardValidator.disableSubmitButton()
-  classCardPopup.open()
+  popupAddCard.open()
 }
 
 //создание класса редактирования профиля
-const classEditPopup = new PopupWithForm(
+const popupEditProfile = new PopupWithForm(
   ".popup_type_edit-profile",
-  formValues
+  submitEditProfileForm
 )
-classEditPopup.setEventListeners()
+popupEditProfile.setEventListeners()
 
 //отрисовка карточек на странице из обьекта initialCards
 const cardSection = new Section(
@@ -69,14 +69,14 @@ const cardSection = new Section(
   ".elements"
 )
 
-const classCardPopup = new PopupWithForm(
+const popupAddCard = new PopupWithForm(
   ".popup_type_add-element",
   (item) => {
     cardSection.addItem(createCard(item))
-    classCardPopup.close()
+    popupAddCard.close()
   }
 )
-classCardPopup.setEventListeners()
+popupAddCard.setEventListeners()
 
 //создается обьект класса PopupWithImage
 const popupOpenImage = new PopupWithImage(".popup_type_image")
