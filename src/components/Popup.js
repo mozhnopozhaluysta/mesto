@@ -9,12 +9,12 @@ export default class Popup {
       this._clickClose = this._handleClose.bind(this)
       //Биндим к функции this._handleSubmit параметр this
       this._clickCloseButton = this._handleSubmit.bind(this)
-      //Устанавливаем (однократно) обработчик нажатия на кнопку крестика
+      //Устанавливаем обработчик нажатия на кнопку крестика
       this._buttonClose.addEventListener("click", this._clickCloseButton)
     }
   
     open() {
-      this.setEventListeners()
+      this._setEventListeners()
       this._popup.classList.add("popup_opened")
     }
   
@@ -24,7 +24,7 @@ export default class Popup {
     }
 
     _handleSubmit() {
-        //Просто вызываем закрытие
+        //Вызов закрытия
         this.close()
     }
 
@@ -40,7 +40,7 @@ export default class Popup {
       }
     }  
     
-    setEventListeners() {
+    _setEventListeners() {
         //Установка обработчиков от popup на document
         document.addEventListener("keydown", this._clickEscClose)
         document.addEventListener("mouseup", this._clickClose)

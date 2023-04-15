@@ -10,6 +10,6 @@
     .profile__info {
         margin: 0 auto 0 0;
         align-items: flex-start;
-        padding: 0;
+        padding-left: 30px;
     }
 }
