@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-<script defer src="index.a80f178049c8567b3979.js"></script><link href="index.css" rel="stylesheet"></head>
+<script defer src="index.b6414bed91f852528b3d.js"></script><link href="index.css" rel="stylesheet"></head>
 
 <body class="body">
     <header class="header">
@@ -14,13 +14,31 @@
     </header>
     <main>
       <section class="profile">
+
+
+        <div class="profile__container">
+          <div class="profile__wrapper-relative">
+
+
         <img class="profile__avatar" src="afbccd49608e4c4afbbb.png" alt="Аватар профиля">
+      
+        <button class="profile__edit-avatar" type="button">
+          <img class="profile__edit-pen" src="a086f758840ae814ecde.svg" alt="изображение письменной ручки">
+        </button>
+      </div>
+      
+      
         <div class="profile__info">
           <div class="profile__info-name">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name">Данные с сервера не получены</h1>
           <button type="button" class="profile__edit-button"></button>
           </div>
-          <h2 class="profile__details">Исследователь океана</h2>
+
+        
+
+
+          <h2 class="profile__details">Данные с сервера не получены</h2>
+        </div>
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
@@ -30,8 +48,13 @@
         <div class="element">
           <button type="button" class="element__delete"></button>
           <img class="element__photo" src="#" alt="города России">
+          <div class="element__group">
           <h2 class="element__title"></h2>
-          <button type="button" class="element__button-like"></button>
+          <div class="element__container-like">
+            <button type="button" class="element__button-like"></button>
+            <p class="element__count-like"></p>
+          </div>
+        </div>
         </div>
       </template>
     </main>
@@ -48,7 +71,7 @@
               type="text"
               minlength="2"
               maxlength="40"
-              name="popupName"
+              name="name"
               class="popup__input popup__input_type_name"
               placeholder="Имя пользователя"
               required
@@ -59,7 +82,7 @@
               minlength="2"
               maxlength="200"
               type="text"
-              name="popupInfo"
+              name="about"
               class="popup__input popup__input_type_info"
               placeholder="О себе"
               required
@@ -105,5 +128,31 @@
         <figcaption class="popup__image-title"></figcaption>
       </figure>
     </section>
+    <div class="popup popup_type_confirmation">
+      <div class="popup__confirmation-container">
+        <button class="popup__button-close" type="button"></button>
+        <h2 class="popup__title popup__title_margin">Вы уверены?</h2>
+        <form class="popup__form">
+          <button class="popup__button-save popup__button-save_margin" type="submit">
+            Да
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_update-avatar">
+      <div class="popup__avatar-container">
+        <button class="popup__button-close" type="button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form" name="editAvatarForm" id="editAvatarForm" novalidate>
+          <label class="popup__label">
+            <input id="nameInputAvatar" class="popup__input popup__input_type_link-avatar" name="avatar" type="url" placeholder="Введите ссылку URL" required>
+            <span class="nameInputAvatar-error error"></span>
+          </label>
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
 </body>
 </html>
