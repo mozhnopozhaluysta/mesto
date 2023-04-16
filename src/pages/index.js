@@ -46,7 +46,7 @@ function createCard(data) {
       try {
         const response = await api.addLike(data._id)
         card.like()
-        card.likesCount(response)
+        card.setLikesCount(response)
       } catch (error) {
         return console.log(`Ошибка: ${error}`)
       }
@@ -55,7 +55,7 @@ function createCard(data) {
       try {
         const response = await api.removeLike(data._id)
         card.dislike()
-        card.likesCount(response)
+        card.setLikesCount(response)
       } catch (error) {
         return console.log(`Ошибка: ${error}`)
       }
@@ -223,75 +223,3 @@ Promise.all([api.getRealUserInfo(), api.getInitialCards()])
 
   .catch((error) => console.log(`Ошибка: ${error}`))
 
-/*function createCard(item) {
-  return new Card(item, ".element-template", () =>
-    popupOpenImage.open(item)
-  ).generateCard()
-}
-
-//передача текста на страницу профиля редактирования полей Имя, О себе
-function submitEditProfileForm(value) {
-  userInfo.setUserInfo(value.popupName, value.popupInfo)
-  popupEditProfile.close()
-}
-
-//Класс UserInfo отвечает за управление отображением информации о пользователе на странице
-const userInfo = new UserInfo({
-  titleSelector: ".profile__name",
-  subtitleSelector: ".profile__details",
-})
-
-//функция открытия попапа редактирования профиля
-function openEditProfile() {
-  const { title, subtitle } = userInfo.getUserInfo()
-  popupName.value = title
-  popupInfo.value = subtitle
-  formEditValidator.disableSubmitButton()
-  popupEditProfile.open()
-}
-
-//функция открытия попапа для создания новой карточки
-function popupAddCardProfile() {
-  formCardValidator.disableSubmitButton()
-  popupAddCard.open()
-}
-
-//создание класса редактирования профиля
-const popupEditProfile = new PopupWithForm(
-  ".popup_type_edit-profile",
-  submitEditProfileForm
-)
-
-//отрисовка карточек на странице из обьекта initialCards
-const cardSection = new Section(
-  {
-    renderer: (item) => cardSection.addItem(createCard(item)),
-  },
-  ".elements"
-)
-
-const popupAddCard = new PopupWithForm(
-  ".popup_type_add-element",
-  (item) => {
-    cardSection.addItem(createCard(item))
-    popupAddCard.close()
-  }
-)
-
-
-
-//валидация формы попап редактирования профиля
-const formEditValidator = new FormValidator(formformValidationConfig
-, popupFormEdit)
-formEditValidator.enableValidation()
-
-//валидация формы попап создания карточек
-const formCardValidator = new FormValidator(formformValidationConfig
-, popupFormAdd)
-formCardValidator.enableValidation()
-
-//кнопки открытия попапов
-profileAddBtn.addEventListener("click", () => popupAddCardProfile())
-profileEditBtn.addEventListener("click", () => openEditProfile())
-
-cardSection.renderItems(photoElements.reverse())*/
