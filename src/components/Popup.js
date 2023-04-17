@@ -38,17 +38,24 @@ export default class Popup {
     }
   }
 
-  setEventListeners() {
+  _setEventListeners() {
     //Установка обработчиков от popup на document
     document.addEventListener("keydown", this._clickEscClose)
     document.addEventListener("mouseup", this._clickClose)
+
+  }
+
+  setEventListeners() {
     //Устанавливаем обработчик нажатия на кнопку крестика
     this._buttonClose.addEventListener("click", this._clickCloseButton)
+    this._setEventListeners()
   }
 
   _removeEventListeners() {
     //Снятие обработчиков от popup на document
     document.removeEventListener("keydown", this._clickEscClose)
     document.removeEventListener("mouseup", this._clickClose)
+    this._buttonClose.removeEventListener("click", this._clickCloseButton)
   }
+
 }

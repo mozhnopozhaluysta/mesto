@@ -25,13 +25,17 @@ export default class PopupWithForm extends Popup {
 
   _handleSubmit(event) {
     event.preventDefault()
-    const replacementText = event.submitter.textContent
+    let replacementText = ''
     // Смена текста кнопки при сохранение данных
-    event.submitter.textContent = "Сохранение..."
+    if (event.submitter) {
+      console.log(event.submitter)
+      replacementText = event.submitter.textContent
+      event.submitter.textContent = "Сохранение..."
+    }
     this._callbackSubmit(this._getInputValues())
       .then(() => this.close())
       .finally(() => {
-        event.submitter.textContent = replacementText
+        if (event.submitter && replacementText !== '') event.submitter.textContent = replacementText
       })
   }
 
@@ -47,7 +51,7 @@ export default class PopupWithForm extends Popup {
   }
 
   _removeEventListeners() {
-    super._removeEventListeners()
     this._form.removeEventListener("submit", this._handleSubmitPointer)
+    super._removeEventListeners()
   }
 }
